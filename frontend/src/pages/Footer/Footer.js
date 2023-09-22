@@ -27,7 +27,7 @@ const Logo = (props) => {
           maxWidth: "10%",
         },
       }}
-      src="/assets/images/logo.png"
+      src="/assets/images/railwaysLogo.png" className="w-[50px]"
       alt="Logo"
       {...props}
     />
