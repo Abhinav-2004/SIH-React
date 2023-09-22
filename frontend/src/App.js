@@ -7,11 +7,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleInput from "./pages/singleInput";
 
 function App() {
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<SingleInput />} />
-    </Routes>
-  </BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SingleInput />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
