@@ -3,30 +3,15 @@ import "./App.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SingleInput from "./pages/singleInput";
 
 function App() {
-  const [tmp, setTmp] = useState("Hello");
-  async function getVal() {
-    const data = await axios
-      .get("http://127.0.0.1:8000/api")
-      .then((res) => {
-        console.log(res.data);
-        setTmp(res.data);
-      })
-      .catch((err) => {
-        console.log("aditya");
-        console.log(err);
-      });
-  }
-  useEffect(() => {
-    getVal();
-  }, []);
-
-  return (
-    <div className="App">
-      <h1>{tmp}</h1>
-    </div>
-  );
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<SingleInput />} />
+    </Routes>
+  </BrowserRouter>;
 }
 
 export default App;
