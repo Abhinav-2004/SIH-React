@@ -4,18 +4,20 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SingleInput from "./pages/singleInput";
+import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 
 function App() {
-  return (<>
-    <Navbar/>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SingleInput />} />
-      </Routes>
-    </BrowserRouter>
-  </>);
+  return (
+    <>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
