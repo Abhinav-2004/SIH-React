@@ -1,11 +1,16 @@
 import React from "react";
-import Footer from "./Footer/Footer";
+import Footer from "../Footer/Footer";
+import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
 
 export default function Homepage() {
+  if(!Cookies.get('sidingUserEmail')){
+    return <Navigate to={'/login'}/>
+}
   return (
     <>
-      <div className="flex w-[100%]">
-        <div className="w-[40%]">
+      <div className="flex justify-between items-center w-[100%]">
+        <div className="w-[40%] flex justify-center items-center">
           <form class="w-full max-w-lg">
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -118,8 +123,8 @@ export default function Homepage() {
             </div>
           </form>
         </div>
-        <div className="flex w-[60%]">
-          <img src="/assets/images/coalBack.png" alt="coalbgError" />
+        <div className="flex w-[60%] justify-center items-center">
+          <img src="/assets/images/coalBack.png" className="w-[80%]" alt="coalbgError" />
         </div>
       </div>
       <Footer />
