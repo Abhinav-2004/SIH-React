@@ -1,7 +1,12 @@
 import React from "react";
-import Footer from "./Footer/Footer";
+import Footer from "../Footer/Footer";
+import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
 
 export default function Homepage() {
+  if(!Cookies.get('sidingUserEmail')){
+    return <Navigate to={'/login'}/>
+}
   return (
     <>
       <div className="flex justify-between items-center w-[100%]">
