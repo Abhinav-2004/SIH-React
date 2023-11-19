@@ -72,9 +72,7 @@ const AddUser = () => {
         })
        }
     }
-    if(!adminEmail){
-        return <Navigate to={'/'}/>
-    }
+    
     console.log(window.location.href);
   return (
     <>
