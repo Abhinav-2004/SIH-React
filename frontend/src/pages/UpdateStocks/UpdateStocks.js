@@ -18,30 +18,46 @@ import { FaCircleDot } from "react-icons/fa6";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
-const LoginPage = () => {
-    const [email,setEmail]=useState(null);
-    const [password,setPassword]=useState(null);
+const UpdateStocks = () => {
+    const [stationID,setStationID]=useState(Cookies.get("stationID"));
+    const [stocks,setStocks]=useState(null);
     const toast=useToast();
-    async function handleLogin(){
-        const res=await axios.post('http://localhost:8080/login/siding/user', {
-            email:email,
-            password:password,
+    async function handleUpdate(){
+        if(Cookies.get("stationID")){
+            if(stocks){
+                const res=await axios.post('http://localhost:8080/update/stocks', {
+                stationID:(Cookies.get("stationID")),
+                stocks:stocks,
         }).then((response)=>{
-          console.log(response);
-            Cookies.set("sidingUserEmail",email);
-            Cookies.set("stationID", response.data.stationID);
-            window.location.reload(false);
+            toast({
+                title: 'Great',
+                description: `Updated the stocks value to = ${stocks}`,
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+              })
         }).catch(()=>{
-          toast({
-            title: 'Error 404',
-            description: "Invalid Credentials",
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-          })
+            toast({
+                title: 'Error 404',
+                description: "Invalid Credentials",
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+              })
         })
+            }
+            else{
+                toast({
+                    title: 'Error',
+                    description: "Missing Stocks Data",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                  })
+            }
+        }
     }
-    if(Cookies.get('sidingUserEmail')){
+    if(!Cookies.get('sidingUserEmail')){
         return <Navigate to={'/'}/>
     }
   return (
@@ -53,7 +69,7 @@ const LoginPage = () => {
               <CardBody>
                 <CardHeader>
                   <Heading size="md">
-                    <div className="font-ubuntu">Enter Email</div>
+                    <div className="font-ubuntu">Your Designated Station ID</div>
                   </Heading>
                 </CardHeader>
                 <Text>
@@ -69,6 +85,7 @@ const LoginPage = () => {
                         </InputLeftElement>
 
                         <Input
+                        isDisabled
                           className="card"
                           variant="filled"
                           sx={{
@@ -77,10 +94,10 @@ const LoginPage = () => {
                             padding: "20px",
                             paddingLeft: "50px",
                           }}
-                          type="text"
+                          type="number"
                           w={400}
                           placeholder=""
-                          onChange={(e)=>setEmail(e.target.value)}
+                          value={stationID}
                         />
                       </InputGroup>
                     </div>
@@ -88,7 +105,7 @@ const LoginPage = () => {
                 </Text>
                 <CardHeader>
                   <Heading size="md">
-                    <div className="font-ubuntu">Enter Password</div>
+                    <div className="font-ubuntu">Enter Current Stocks</div>
                   </Heading>
                 </CardHeader>
                 <Text>
@@ -112,10 +129,10 @@ const LoginPage = () => {
                             padding: "20px",
                             paddingLeft: "50px",
                           }}
-                          type="password"
+                          type="number"
                           w={400}
                           placeholder=""
-                          onChange={(e)=>setPassword(e.target.value)}
+                          onChange={(e)=>setStocks(e.target.value)}
                         />
                       </InputGroup>
                     </div>
@@ -125,12 +142,12 @@ const LoginPage = () => {
             </Card>
           </div>
           <div className="button">
-            <button onClick={handleLogin}
+            <button onClick={handleUpdate}
             className="box-border relative z-30 inline-flex items-center justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
               <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
               <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
               <span className="relative z-20 flex items-center text-sm gap-2">
-                Login
+                Update
               </span>
             </button>
           </div>
@@ -140,4 +157,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default UpdateStocks;

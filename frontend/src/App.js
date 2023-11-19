@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AddUser from "./pages/AddUser/AddUser";
+import UpdateStocks from "./pages/UpdateStocks/UpdateStocks";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path='/addUser' element={<AddUser/>}/>
+          <Route path='/update/stocks' element={<UpdateStocks/>}/>
         </Routes>
       </BrowserRouter>
     </>

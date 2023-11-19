@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import {AiFillLock} from "react-icons/ai";
 import {FiHelpCircle} from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   function handleLogout(){
     Cookies.remove('sidingUserEmail');
@@ -31,10 +31,13 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center w-[100%] pl-[2%] pt-[1%] pr-[2%] pb-[1%] border-b-2 border-gray-300">
+      <Link to={'/'}>
+
       <div className="left-div flex justify-center items-center gap-8">
         <img src="/assets/images/railwaysLogo.png" className="w-16" />
-        <div className="text-2xl font-bold font-ubuntu">IRCTC</div>
+        <div className="text-2xl font-bold font-ubuntu">IRSSS</div>
       </div>
+      </Link>
       <div className="flex justify-center items-center gap-10">
         
         {Cookies.get('sidingUserEmail') && admin && window.location.href!="http://localhost:3000/addUser" &&<>
