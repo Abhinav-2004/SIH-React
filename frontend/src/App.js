@@ -7,15 +7,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import AddUser from "./pages/AddUser/AddUser";
 
 function App() {
   return (
     <>
-      <Navbar />
+      
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/addUser' element={<AddUser/>}/>
         </Routes>
       </BrowserRouter>
     </>
